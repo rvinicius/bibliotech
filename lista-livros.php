@@ -13,6 +13,7 @@ $livros = $livroDao->listaLivros();
 	      <th scope="col">#</th>
 	      <th scope="col">Nome</th>
 	      <th scope="col">ISBN</th>
+	      <th scope="col"></th>
 	    </tr>
 	  </thead>
 	  <tbody>
@@ -21,6 +22,7 @@ $livros = $livroDao->listaLivros();
 	      <th scope="row"><?= $livro->getId(); ?></th>
 	      <td><?= $livro->getNome(); ?></td>
 	      <td><?= $livro->getIsbn(); ?></td>
+	      <td><a href="altera-livro.php?id=<?= $livro->getId(); ?>">Alterar</a></td>
 	    </tr>
 	<?php endforeach ?>
 	  </tbody>

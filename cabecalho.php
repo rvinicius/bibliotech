@@ -1,11 +1,18 @@
 <?php 
 require_once("conecta.php");
+
+    error_reporting(E_ALL ^ E_NOTICE);
+    
+    spl_autoload_register(function($nomeDaClasse){
+        require_once("class/".$nomeDaClasse.".php");
+    });
+
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
-	<link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="vendor/twbs/bootstrap/dist/css/bootstrap.min.css">
 	<title>Lista de Livros</title>
 </head>
 <body>
@@ -41,5 +48,7 @@ require_once("conecta.php");
     </form>
   </div>
 </nav>
-	<script type="text/javascript" src="js/bootstrap/bootstrap.min.js"></script>
+   <script type="text/javascript" src="vendor/components/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="vendor/twbs/bootstrap/dist/js/bootstrap.min.js"></script>
+
 

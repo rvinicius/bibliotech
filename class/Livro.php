@@ -6,11 +6,10 @@
     private $nome;
     private $isbn;
 
-    public function __construct($id, $nome, $isbn)
+    public function __construct($nome, $isbn)
     {
     	$this->nome = $nome;
         $this->isbn = $isbn;
-        $this->id = $id;
     }
 
     public function getId()
@@ -18,7 +17,7 @@
     	return $this->id;
     }
 
-    public function setId()
+    public function setId($id)
     {
     	$this->id = $id;
     }

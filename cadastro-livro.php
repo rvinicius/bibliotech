@@ -1,18 +1,20 @@
-<?php require_once("cabecalho.php"); ?>
+<?php 
+require_once("cabecalho.php"); 
+?>
 
 <div class="container">
-<form>
+<form action="insert-livro.php" method="post">
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="inputEmail4">Nome</label>
-      <input type="text" class="form-control" id="Nome">
+      <input type="text" class="form-control" name="nome">
     </div>
     <div class="form-group col-md-6">
       <label for="ISBN">ISBN</label>
-      <input type="text" class="form-control" id="ISBN" >
+      <input type="text" class="form-control" name="isbn" >
     </div>
   </div>
-  <a class="btn btn-primary" href="#" role="button">Cadastrar</a>
+ <input type="submit" value="Cadastrar" class="btn btn-primary" />
 </form>
 </div>
 
