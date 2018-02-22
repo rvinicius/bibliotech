@@ -3,10 +3,13 @@
 require_once("class/LivroDAO.php");
 
 $livroDao = new LivroDAO($conexao);
-$livros = $livroDao->listaLivros();
 
-
-
+$a = $_GET['a'];
+if($a == 'buscar'){
+	$livros = $livroDao->buscaLivroPorIsbnOuNome($_POST['search']);
+} else {
+	$livros = $livroDao->listaLivros();
+}
 ?>
 
 <?php mostraAlerta("success");
