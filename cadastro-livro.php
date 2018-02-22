@@ -14,6 +14,10 @@ require_once("cabecalho.php");
       <label for="ISBN">ISBN</label>
       <input type="text" class="form-control" name="isbn" >
     </div>
+    <div class="form-group col-md-6">
+      <label for="autor">Autor</label>
+      <input type="text" class="form-control" name="autor" >
+    </div>
   </div>
  <input type="submit" value="Cadastrar" class="btn btn-primary" />
 </form>
