@@ -39,4 +39,50 @@ class livroDAO
 		return mysqli_query($this->conexao, $query);
 	}
 
+	public function buscaLivro($id)
+	{
+		$query = "select * from livros where id={$id}";
+		$resultado = mysqli_query($this->conexao, $query);
+		$livro_buscado = mysqli_fetch_assoc($resultado);
+
+		$livro = new Livro($livro_buscado['nome'], $livro_buscado['isbn']);
+		$livro->setId($id);
+
+		return $livro;
+	}
+
+	public function alteraLivro(Livro $livro)
+	{
+		$query = "update livros set nome='{$livro->getNome()}', isbn='{$livro->getIsbn()}' where id='{$livro->getId()}'";
+		var_dump($query);
+		return mysqli_query($this->conexao, $query);
+
+	}
+    
+    public function deletaLivro($id)
+    {
+        $query = "delete from livros where id='{$id}'";
+
+        return mysqli_query($this->conexao, $query);
+    }
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
