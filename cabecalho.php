@@ -1,5 +1,6 @@
 <?php 
 require_once("conecta.php");
+require_once("mostra-alerta.php"); 
 
     error_reporting(E_ALL ^ E_NOTICE);
     
@@ -13,7 +14,7 @@ require_once("conecta.php");
 <html>
 <head>
 	<link rel="stylesheet" type="text/css" href="vendor/twbs/bootstrap/dist/css/bootstrap.min.css">
-	<title>Lista de Livros</title>
+	<title>Acervo</title>
 </head>
 <body>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -30,17 +31,18 @@ require_once("conecta.php");
           Livros
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="lista-livros.php">Lista</a>
+          <a class="dropdown-item" href="lista-livros.php">Acervo</a>
           <a class="dropdown-item" href="cadastro-livro.php">Cadastro</a>
         </div>
       </li>
 
-
     </ul>
-    <form class="form-inline my-2 my-lg-0">
+
+    <form class="form-inline my-2 my-lg-0 <?= basename($_SERVER['PHP_SELF']) != "lista-livros.php" ? "d-none " : "" ?>"">
       <input class="form-control mr-sm-2" type="search" placeholder="Nome/ISBN" aria-label="Search">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
     </form>
+
   </div>
 </nav>
    <script type="text/javascript" src="vendor/components/jquery/jquery.min.js"></script>
