@@ -67,6 +67,29 @@ class LivroDAO
         return mysqli_query($this->conexao, $query);
     }
 
+    public function buscaLivroPorIsbnOuNome($busca)
+    {
+    	$livros = array();
+    	$query = "SELECT * FROM livros WHERE nome LIKE '%{$busca}%' OR isbn LIKE '%{$busca}%'";
+    	$resultado = mysqli_query($this->conexao, $query);
+    	while($livro_array = mysqli_fetch_assoc($resultado)) {
+
+			$nome_livro = $livro_array['nome'];
+			$id_livro = $livro_array['id'];
+			$isbn = $livro_array['isbn'];
+			$autor = $livro_array['autor'];
+
+			$livro = new Livro($nome_livro, $isbn, $autor);
+
+			$livro->setId($id_livro);
+
+			array_push($livros, $livro);
+		}
+
+		return $livros;
+
+    }
+
 }
 
 
