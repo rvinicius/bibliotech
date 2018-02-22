@@ -22,6 +22,11 @@
       <input type="text" class="form-control" name="isbn" value="<?= $livro->getIsbn(); ?>">
     </div>
 
+    <div class="form-group col-md-5">
+      <label for="autor">Autor</label>
+      <input type="text" class="form-control" name="autor" value="<?= $livro->getAutor(); ?>">
+    </div>
+
      <div class="form-group col-md-10">
      	 <input type="submit" value="Alterar" class="btn btn-primary float-right" />
      </div>
