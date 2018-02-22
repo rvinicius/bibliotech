@@ -23,7 +23,7 @@ require_once("cabecalho.php");
     </div>
 
      <div class="form-group col-md-10">
-       <input type="submit" value="Alterar" class="btn btn-primary float-right" />
+       <input type="submit" value="Cadastrar" class="btn btn-primary float-right" />
      </div>
   </div>
 
