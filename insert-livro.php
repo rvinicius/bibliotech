@@ -10,10 +10,14 @@
     $livroDao = new LivroDAO($conexao);
     
 
-   if($livroDao->insereLivro($livro)){ ?>
-   	<p class="alert alert-success">O livro <?= $livro->getNome() ?> foi adicionado.</p>
-   <?php } else {
-   			$msg = mysqli_error($conexao); ?>
-   	<p class="alert alert-danger">O livro <?= $livro->getNome() ?> não foi adicionado: <?= $msg?></p>
+    if($livroDao->alteraLivro($livro)){
+      $_SESSION["success"] = "Livro cadastrado com sucesso.";
+       header("Location: lista-livros.php");
+       die();
 
-   <?php } ?>
+    } else {
+        $msg = mysqli_error($conexao);
+        $_SESSION["danger"] = "O livro ".$livro->getNome()." nao foi cadastrado. Erro: ".$msg;
+        header("Location: lista-livros.php");
+        die();
+    } 
