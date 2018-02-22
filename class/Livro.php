@@ -5,11 +5,13 @@
     private $id;
     private $nome;
     private $isbn;
+    private $autor;
 
-    public function __construct($nome, $isbn)
+    public function __construct($nome, $isbn, $autor)
     {
     	$this->nome = $nome;
         $this->isbn = $isbn;
+        $this->autor = $autor;
     }
 
     public function getId()
@@ -40,5 +42,15 @@
     public function setIsbn($isbn)
     {
     	$this->isbn = $isbn;
+    }
+
+    public function getAutor()
+    {
+        return $this->autor;
+    }
+
+    public function setAutor($autor)
+    {
+        $this->autor = $autor;
     }
 }
