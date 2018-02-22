@@ -8,7 +8,7 @@
 
 <br/>
 <div class="container card">
- 	<h5 class="card-title">Alteracao de livro</h5>
+ 	<h2 class="card-title">Alteracao de livro</h5>
 <form action="update-livro.php" method="post">
   <div class="form-row card-body ">
 

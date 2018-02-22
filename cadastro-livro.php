@@ -2,25 +2,31 @@
 require_once("cabecalho.php"); 
 ?>
 
-<h1>Cadastro de livros</h1>
-<div class="container">
-<form action="insert-livro.php" method="post">
-  <div class="form-row">
-    <div class="form-group col-md-6">
-      <label for="inputEmail4">Nome</label>
+<br/>
+<div class="container card">
+  <h2 class="card-title">Cadastro de livro</h2>
+<form action="update-livro.php" method="post">
+  <div class="form-row card-body ">
+
+    <div class="form-group col-md-5">
+      <label for="nome">Nome</label>
       <input type="text" class="form-control" name="nome">
     </div>
-    <div class="form-group col-md-6">
-      <label for="ISBN">ISBN</label>
-      <input type="text" class="form-control" name="isbn" >
+    <div class="form-group col-md-5">
+      <label for="isbn">ISBN</label>
+      <input type="text" class="form-control" name="isbn">
     </div>
-    <div class="form-group col-md-6">
+
+    <div class="form-group col-md-5">
       <label for="autor">Autor</label>
-      <input type="text" class="form-control" name="autor" >
+      <input type="text" class="form-control" name="autor">
     </div>
+
+     <div class="form-group col-md-10">
+       <input type="submit" value="Alterar" class="btn btn-primary float-right" />
+     </div>
   </div>
- <input type="submit" value="Cadastrar" class="btn btn-primary" />
+
 </form>
 </div>
-
 <?php require_once("rodape.php"); ?>
