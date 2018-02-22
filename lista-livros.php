@@ -19,8 +19,9 @@ $livros = $livroDao->listaLivros();
 	      <th scope="col">Cod.</th>
 	      <th scope="col">Titulo</th>
 	      <th scope="col">ISBN</th>
+	      <th scope="col">Autor</th>
 	      <th scope="col"></th>
-	       <th scope="col"></th>
+	      <th scope="col"></th>
 	    </tr>
 	  </thead>
 	  <tbody>
@@ -29,6 +30,7 @@ $livros = $livroDao->listaLivros();
 	        <th scope="row"><?= $livro->getId(); ?></th>
 	        <td><?= $livro->getNome(); ?></td>
 	        <td><?= $livro->getIsbn(); ?></td>
+	        <td><?= $livro->getAutor(); ?></td>
 	        <td class="text-center"><a href="altera-livro.php?id=<?= $livro->getId(); ?>" class="btn btn-outline-primary ">Alterar</a></td>
   
 	        <form action="remove-livro.php" method="post">
