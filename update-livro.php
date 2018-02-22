@@ -11,10 +11,16 @@
     
     $livro->setId($_POST['id']);
 
-   if($livroDao->alteraLivro($livro)){ ?>
-   	<p class="alert alert-success">O livro <?= $livro->getNome() ?> foi alterado.</p>
-   <?php } else {
-   			$msg = mysqli_error($conexao); ?>
-   	<p class="alert alert-danger">O livro <?= $livro->getNome() ?> não foi alterado: <?= $msg?></p>
+    if($livroDao->alteraLivro($livro)){
+      $_SESSION["success"] = "Livro alterado com sucesso.";
+       header("Location: lista-livros.php");
+       die();
 
-   <?php } ?>
+    } else {
+   			$msg = mysqli_error($conexao);
+        $_SESSION["danger"] = "O livro ".$livro->getNome()." nao foi alterado. Erro: ".$msg;
+        header("Location: lista-livros.php");
+        die();
+    } 
+
+   
