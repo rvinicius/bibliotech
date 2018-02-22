@@ -4,8 +4,9 @@
 
     $nome_livro = $_POST['nome'];
     $isbn_livro = $_POST['isbn'];
+    $autor = $_POST['autor'];
 
-    $livro = new Livro($nome_livro, $isbn_livro);
+    $livro = new Livro($nome_livro, $isbn_livro, $autor);
     $livroDao = new LivroDAO($conexao);
     
     $livro->setId($_POST['id']);

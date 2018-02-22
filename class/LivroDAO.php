@@ -2,7 +2,7 @@
 
 require_once("class/Livro.php");
 
-class livroDAO
+class LivroDAO
 {
 	private $conexao;
 
@@ -21,8 +21,9 @@ class livroDAO
 			$nome_livro = $livro_array['nome'];
 			$id_livro = $livro_array['id'];
 			$isbn = $livro_array['isbn'];
+			$autor = $livro_array['autor'];
 
-			$livro = new Livro($nome_livro, $isbn);
+			$livro = new Livro($nome_livro, $isbn, $autor);
 
 			$livro->setId($id_livro);
 
@@ -34,7 +35,7 @@ class livroDAO
 
 	public function insereLivro(Livro $livro)
 	{
-		$query = "INSERT INTO livros(nome,isbn) values('{$livro->getNome()}','{$livro->getIsbn()}')";
+		$query = "INSERT INTO livros(nome, isbn, autor) values('{$livro->getNome()}','{$livro->getIsbn()}', '{$livro->getAutor()}')";
 
 		return mysqli_query($this->conexao, $query);
 	}
@@ -45,7 +46,7 @@ class livroDAO
 		$resultado = mysqli_query($this->conexao, $query);
 		$livro_buscado = mysqli_fetch_assoc($resultado);
 
-		$livro = new Livro($livro_buscado['nome'], $livro_buscado['isbn']);
+		$livro = new Livro($livro_buscado['nome'], $livro_buscado['isbn'], $livro_buscado['autor']);
 		$livro->setId($id);
 
 		return $livro;
@@ -53,7 +54,7 @@ class livroDAO
 
 	public function alteraLivro(Livro $livro)
 	{
-		$query = "update livros set nome='{$livro->getNome()}', isbn='{$livro->getIsbn()}' where id='{$livro->getId()}'";
+		$query = "update livros set nome='{$livro->getNome()}', isbn='{$livro->getIsbn()}', autor='{$livro->getAutor()}' where id='{$livro->getId()}'";
 		var_dump($query);
 		return mysqli_query($this->conexao, $query);
 
