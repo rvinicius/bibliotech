@@ -23,6 +23,9 @@ require_once("mostra-alerta.php");
     <span class="navbar-toggler-icon"></span>
   </button>
 
+
+
+
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
 
@@ -38,10 +41,16 @@ require_once("mostra-alerta.php");
 
     </ul>
 
-    <form class="form-inline my-2 my-lg-0 <?= basename($_SERVER['PHP_SELF']) != "lista-livros.php" ? "d-none " : "" ?>"">
-      <input class="form-control mr-sm-2" type="search" placeholder="Nome/ISBN" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+
+
+
+    <form method="post" class="form-inline my-2 my-lg-0 <?= basename($_SERVER['PHP_SELF']) != "lista-livros.php" ? "d-none " : "" ?>" action="<?=$_SERVER['PHP_SELF'] ?>?a=buscar"">
+      <input class="form-control mr-sm-2" type="text" placeholder="Nome/ISBN" name="search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit" value="Buscar">Buscar</button>
     </form>
+
+
+
 
   </div>
 </nav>
