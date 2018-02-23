@@ -1,12 +1,26 @@
 <?php 
 
-abstract class Usuario
+class Usuario
 {
     private $id;
     private $nome;
     private $dataNascimento;
     private $cpf;
     private $rg;
+    private $email;
+    private $senha;
+    private $endereco;
+    private $telefone;
+
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
 
     public function getNome()
     {
@@ -46,5 +60,46 @@ abstract class Usuario
     public function setRg($rg)
     {
         $this->rg = $rg;
+    }
+
+        public function getEmail()
+    {
+        return $this->email;
+    }
+
+    public function setEmail($email)
+    {
+        $this->email = $email;
+    }
+
+    public function getSenha()
+    {
+        return $this->email;
+    }
+
+    public function setSenha($senha)
+    {
+        $senhaMd5 = md5($senha);
+        $this->senha = $senhaMd5;
+    }
+
+    public function getEndereco()
+    {
+        return $this->endereco;
+    }
+
+    public function setEndereco($endereco)
+    {
+        $this->endereco = $endereco;
+    }
+
+    public function getTelefone()
+    {
+        return $this->telefone;
+    }
+
+    public function setTelefone($telefone)
+    {
+        $this->telefone = $telefone;
     }
 }
