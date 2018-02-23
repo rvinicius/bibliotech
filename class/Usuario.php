@@ -8,9 +8,19 @@ class Usuario
     private $cpf;
     private $rg;
     private $email;
-    private $senha;
     private $endereco;
     private $telefone;
+
+    public function __construct($nome, $dataNascimento, $cpf, $rg, $email, $endereco, $telefone)
+    {
+        $this->nome = $nome;
+        $this->dataNascimento = $dataNascimento;
+        $this->cpf = $cpf;
+        $this->rg = $rg;
+        $this->email = $email;
+        $this->endereco = $endereco;
+        $this->telefone = $telefone;
+    }
 
     public function getId()
     {
@@ -70,17 +80,6 @@ class Usuario
     public function setEmail($email)
     {
         $this->email = $email;
-    }
-
-    public function getSenha()
-    {
-        return $this->email;
-    }
-
-    public function setSenha($senha)
-    {
-        $senhaMd5 = md5($senha);
-        $this->senha = $senhaMd5;
     }
 
     public function getEndereco()
