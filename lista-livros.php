@@ -37,7 +37,6 @@ if($a == 'buscar'){
 	        <td><?= $livro->getNome(); ?></td>
 	        <td><?= $livro->getIsbn(); ?></td>
 	        <td><?= $livro->getAutor(); ?></td>
-	       	<td class="text-center "><a href="#" class="btn btn-outline-primary btn-sm">Emprestar</a></td>
 	        <td class="text-center"><a href="altera-livro.php?id=<?= $livro->getId(); ?>" class="btn btn-outline-primary btn-sm">Alterar</a></td>
   
 	        <form action="remove-livro.php" method="post">
