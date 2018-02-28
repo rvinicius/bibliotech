@@ -10,7 +10,7 @@
     $livroDao = new LivroDAO($conexao);
     
 
-    if($livroDao->alteraLivro($livro)){
+    if($livroDao->insereLivro($livro)){
       $_SESSION["success"] = "Livro cadastrado com sucesso.";
        header("Location: lista-livros.php");
        die();
