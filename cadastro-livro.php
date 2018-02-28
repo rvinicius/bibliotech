@@ -5,7 +5,7 @@ require_once("cabecalho.php");
 <br/>
 <div class="container card">
   <h2 class="card-title">Cadastro de livro</h2>
-<form action="update-livro.php" method="post">
+<form action="insert-livro.php" method="post">
   <div class="form-row card-body ">
 
     <div class="form-group col-md-5">
