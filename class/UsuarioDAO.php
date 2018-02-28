@@ -38,7 +38,7 @@ class UsuarioDAO
 
 	public function insereUsuario(Usuario $usuario)
 	{
-		$query = "INSERT INTO usuario(nome, dataNascimento, cpf, rg, email, endereco, telefone) 
+		$query = "INSERT INTO usuarios(nome, dataNascimento, cpf, rg, email, endereco, telefone) 
 		values(
 			'{$usuario->getNome()}',
 			'{$usuario->getDataNascimento()}',
@@ -46,15 +46,17 @@ class UsuarioDAO
 			'{$usuario->getRg()}',
 			'{$usuario->getEmail()}',
 			'{$usuario->getEndereco()}',
-			'{$usuario->getTelefone()}',
+			'{$usuario->getTelefone()}'
 		)";
+
+		var_dump($query);
 
 		return mysqli_query($this->conexao, $query);
 	}
 
 	public function buscaUsuario($id)
 	{
-		$query = "select * from usuario where id={$id}";
+		$query = "select * from usuarios where id={$id}";
 		$resultado = mysqli_query($this->conexao, $query);
 		$usuario_array = mysqli_fetch_assoc($resultado);
 
@@ -67,7 +69,9 @@ class UsuarioDAO
 		$endereco = $usuario_array['endereco'];
 		$telefone = $usuario_array['telefone'];
 
-		$usuario = new Usuario($nome, $dataNascimento, $cpf, $rg, $email, $endereco, $telefone);
+		$dataNascimentoFormatada = date("d/m/Y", strtotime($dataNascimento));
+
+		$usuario = new Usuario($nome, $dataNascimentoFormatada, $cpf, $rg, $email, $endereco, $telefone);
 		$usuario->setId($id);
 
 		return $usuario;
@@ -82,10 +86,9 @@ class UsuarioDAO
 		rg='{$usuario->getRg()}',
 		email='{$usuario->getEmail()}',
 		endereco='{$usuario->getEndereco()}',
-		telefone='{$usuario->getTelefone()}',) 
-		 where id='{$livro->getId()}'";
+		telefone='{$usuario->getTelefone()}'
+		 where id='{$usuario->getId()}'";
 
-		var_dump($query);
 		return mysqli_query($this->conexao, $query);
 
 	}
