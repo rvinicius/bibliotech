@@ -8,6 +8,11 @@ require_once("mostra-alerta.php");
         require_once("class/".$nomeDaClasse.".php");
     });
 
+    function verificaPaginaAtual($pagina)
+    {
+      return basename($_SERVER['PHP_SELF']) == $pagina ? "active" : "";
+    }
+
 ?>
 
 <!DOCTYPE html>
@@ -15,6 +20,7 @@ require_once("mostra-alerta.php");
 <head>
 	<link rel="stylesheet" type="text/css" href="vendor/twbs/bootstrap/dist/css/bootstrap.min.css">
 	<title>Acervo</title>
+    <meta charset="utf-8" />
 </head>
 <body>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -24,19 +30,29 @@ require_once("mostra-alerta.php");
   </button>
 
 
-
-
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
 
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle <?= basename($_SERVER['PHP_SELF']) == "lista-livros.php" ? "active" : "" ?>" href="lista-livros.php" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a class="nav-link dropdown-toggle <?= verificaPaginaAtual("lista-livros.php"); ?>" href="lista-livros.php" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Livros
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="lista-livros.php">Acervo</a>
           <a class="dropdown-item" href="cadastro-livro.php">Cadastro</a>
         </div>
+      </li>
+
+
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle <?= verificaPaginaAtual("lista-usuarios.php"); ?> ?>" href="lista-usuario.php" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Usuários
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="lista-usuarios.php">Listagem</a>
+          <a class="dropdown-item" href="cadastro-usuario.php">Cadastro</a>
+        </div>  
       </li>
 
     </ul>
