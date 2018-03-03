@@ -1,6 +1,7 @@
 {
     "require": {
         "components/jquery": "^3.0",
-        "twbs/bootstrap" : "4.0"
+        "twbs/bootstrap" : "4.0",
+        "nesbot/carbon": "~1.18"
     }
 }
