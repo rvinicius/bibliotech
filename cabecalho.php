@@ -8,11 +8,6 @@ require_once("mostra-alerta.php");
         require_once("class/".$nomeDaClasse.".php");
     });
 
-    function verificaPaginaAtual($pagina)
-    {
-      return basename($_SERVER['PHP_SELF']) == $pagina ? "active" : "";
-    }
-
 ?>
 
 <!DOCTYPE html>
@@ -34,7 +29,7 @@ require_once("mostra-alerta.php");
     <ul class="navbar-nav mr-auto">
 
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle <?= verificaPaginaAtual("lista-livros.php"); ?>" href="lista-livros.php" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a class="nav-link dropdown-toggle" href="lista-livros.php" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Livros
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -46,13 +41,23 @@ require_once("mostra-alerta.php");
 
 
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle <?= verificaPaginaAtual("lista-usuarios.php"); ?> ?>" href="lista-usuario.php" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a class="nav-link dropdown-toggle" href="lista-usuarios.php" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Usuários
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="lista-usuarios.php">Listagem</a>
           <a class="dropdown-item" href="cadastro-usuario.php">Cadastro</a>
         </div>  
+      </li>
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="lista-emprestimos.php" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Empréstimo
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="lista-emprestimos.php">Relação</a>
+          <a class="dropdown-item" href="cadastro-emprestimo.php">Novo</a>
+        </div>
       </li>
 
     </ul>
@@ -67,10 +72,26 @@ require_once("mostra-alerta.php");
 
 
 
-
   </div>
 </nav>
    <script type="text/javascript" src="vendor/components/jquery/jquery.min.js"></script>
 	<script type="text/javascript" src="vendor/twbs/bootstrap/dist/js/bootstrap.min.js"></script>
 
-
+<script type="text/javascript">
+ $(document).ready(function () {    
+    //Get CurrentUrl variable by combining origin with pathname, this ensures that any url appendings (e.g. ?RecordId=100) are removed from the URL
+    var CurrentUrl = window.location.origin+window.location.pathname;
+    //Check which menu item is 'active' and adjust apply 'active' class so the item gets highlighted in the menu
+    //Loop over each <a> element of the NavMenu container
+    $('nav a').each(function(Key,Value)
+        {
+            //Check if the current url
+            if(Value['href'] === CurrentUrl)
+            {
+                //We have a match, add the 'active' class to the parent item (li element).
+                $(Value).parent().parent().addClass('active');
+            }
+        });
+    console.log();
+ });
+ </script>
