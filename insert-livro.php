@@ -6,7 +6,7 @@
     $isbn_livro = $_POST['isbn'];
     $autor = $_POST['autor'];
 
-    $livro = new Livro($nome_livro, $isbn_livro, $autor);
+    $livro = new Livro($nome_livro, $isbn_livro, $autor, "disponivel");
     $livroDao = new LivroDAO($conexao);
     
 
