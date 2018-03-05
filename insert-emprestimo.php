@@ -35,8 +35,8 @@
     $emprestimoDao = new EmprestimoDAO($conexao);
 
     if($emprestimoDao->insereEmprestimo($emprestimo)){
-      $_SESSION["success"] = "Empréstimo cadastrado com sucesso. Prazo para entrega: "."<strong>".Carbon::parse($emprestimo->getDataEntrega())->format('d/m/y').</strong>";
-       header("Location: lista-livros.php");
+      $_SESSION["success"] = "Empréstimo cadastrado com sucesso. Prazo para entrega: "."<strong>".Carbon::parse($emprestimo->getDataEntrega())->format('d/m/y')."</strong>";
+       header("Location: lista-emprestimos.php");
        die();
 
     } else {
