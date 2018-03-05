@@ -6,12 +6,14 @@
     private $nome;
     private $isbn;
     private $autor;
+    private $disponibilidade;
 
-    public function __construct($nome, $isbn, $autor)
+    public function __construct($nome, $isbn, $autor, $disponibilidade)
     {
     	$this->nome = $nome;
         $this->isbn = $isbn;
         $this->autor = $autor;
+        $this->disponibilidade = $disponibilidade;
     }
 
     public function getId()
@@ -22,6 +24,16 @@
     public function setId($id)
     {
     	$this->id = $id;
+    }
+
+    public function getDisponibilidade()
+    {
+        return $this->disponibilidade;
+    }
+
+    public function setDisponibilidade($disponibilidade)
+    {
+        $this->disponibilidade = $disponibilidade;
     }
 
     public function getNome()
