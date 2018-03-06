@@ -7,7 +7,7 @@ $usuarioDao = new UsuarioDAO($conexao);
 $usuarios = $usuarioDao->listaUsuarios();
 
 $livrosDao = new LivroDAO($conexao);
-$livros = $livrosDao->listaLivros();
+$livros = $livrosDao->listaLivrosDisponiveis();
 
 ?>
 
