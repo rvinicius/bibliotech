@@ -60,7 +60,6 @@
 					      <th scope="col">Usuario</th>
 					      <th scope="col">Livro</th>
 					      <th scope="col">Data da criação</th>
-					      <th scope="col">Data da entrega</th>
 					      <th scope="col">Status</th>
 						</tr>
 				  	</thead>
@@ -71,7 +70,6 @@
 						        <td><?= $emprestimo->getUsuario()->getNome(); ?></td>
 						        <td><?= $emprestimo->getLivro()->getNome(); ?></td>
 						        <td><?= Carbon::createFromFormat('Y-m-d', $emprestimo->getDataEmprestimo())->format('d/m/Y') ?></td>
-						        <td><?= Carbon::createFromFormat('Y-m-d', $emprestimo->getDataEntrega())->format('d/m/Y') ?></td>
 								<td class="text-center status"><a href="#"><span ><?= ucfirst($emprestimo->getStatus()); ?></span></td>
 						    </tr>
 						<?php endforeach ?>
@@ -90,7 +88,8 @@
 			      		<th scope="col">Usuario</th>
 			      		<th scope="col">Livro</th>
 						<th scope="col">Data da criação</th>
-					    <th scope="col">Data da entrega</th>
+					    <th scope="col">Limite Entrega</th>
+			      		<th scope="col"></th>
 			      		<th scope="col"></th>
 					</tr>
 			  		</thead>
@@ -101,8 +100,9 @@
 					        <td><?= $emprestimoAberto->getUsuario()->getNome(); ?></td>
 					        <td><?= $emprestimoAberto->getLivro()->getNome(); ?></td>
 					        <td><?= Carbon::createFromFormat('Y-m-d', $emprestimoAberto->getDataEmprestimo())->format('d/m/Y') ?></td>
-					        <td><?= Carbon::createFromFormat('Y-m-d', $emprestimoAberto->getDataEntrega())->format('d/m/Y') ?></td>
-					        <td class="text-center"><a href="devolucao.php?id=<?= $emprestimoAberto->getId(); ?>" class="btn btn-outline-primary btn-sm">Devolução</a></td>
+					        <td><?= Carbon::createFromFormat('Y-m-d', $emprestimoAberto->getDataLimite())->format('d/m/Y') ?></td>
+					        <td class="text-center"><a href="devolucao-formulario.php?id=<?= $emprestimoAberto->getId(); ?>" class="btn btn-outline-primary btn-sm">Devolução</a></td>
+					        <td class="text-center"><a href="renovacao-formulario.php?id=<?= $emprestimoAberto->getId(); ?>" class="btn btn-outline-primary btn-sm">Renovação</a></td>
 					    </tr>
 						<?php endforeach ?>
 			  		</tbody>
@@ -122,12 +122,12 @@
 					</tr>
 					</thead>
 					<tbody>
-						<?php foreach ($emprestimosFinalizados as $emprestimosFinalizado) : ?>
+						<?php foreach ($emprestimosFinalizados as $emprestimoFinalizado) : ?>
 						<tr>
-						<th scope="row"><?= $emprestimosFinalizado->getId(); ?></th>
-							<td><?= $emprestimosFinalizado->getUsuario()->getNome(); ?></td>
-							<td><?= $emprestimosFinalizado->getLivro()->getNome(); ?></td>
-							<td><?= Carbon::createFromFormat('Y-m-d', $emprestimo->getDataEntrega())->format('d/m/Y') ?></td>
+						<th scope="row"><?= $emprestimoFinalizado->getId(); ?></th>
+							<td><?= $emprestimoFinalizado->getUsuario()->getNome(); ?></td>
+							<td><?= $emprestimoFinalizado->getLivro()->getNome(); ?></td>
+							<td><?= Carbon::createFromFormat('Y-m-d', $emprestimoFinalizado->getDataEntrega())->format('d/m/Y') ?></td>
 						</tr>
 						<?php endforeach ?>
 					</tbody>
@@ -143,6 +143,7 @@
 						<th scope="col">#Cod</th>
 						<th scope="col">Usuario</th>
 						<th scope="col">Livro</th>
+						<th scope="col">Multa</th>
 						<th scope="col">Devolução</th>
 					</tr>
 					</thead>
@@ -152,6 +153,7 @@
 						<th scope="row"><?= $emprestimoMultaAberta->getId(); ?></th>
 							<td><?= $emprestimoMultaAberta->getUsuario()->getNome(); ?></td>
 							<td><?= $emprestimoMultaAberta->getLivro()->getNome(); ?></td>
+							<td><?= $emprestimoMultaAberta->getMulta()." R$"; ?></td>
 							<td class="text-center"><a href="devolucao.php?id=<?= $emprestimoMultaAberta->getId(); ?>" class="btn btn-outline-primary btn-sm">Devolução</a></td>
 						</tr>
 						<?php endforeach ?>
