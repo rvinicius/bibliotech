@@ -89,7 +89,27 @@ class LivroDAO
 		}
 
 		return $livros;
+    }
 
+    public function listaLivrosDisponiveis(){
+    	$livros = array();
+		$resultado = mysqli_query($this->conexao, "SELECT * FROM livros WHERE disponibilidade='disponivel';");
+
+		while($livro_array = mysqli_fetch_assoc($resultado)) {
+
+			$nome_livro = $livro_array['nome'];
+			$id_livro = $livro_array['id'];
+			$isbn = $livro_array['isbn'];
+			$autor = $livro_array['autor'];
+			$disponibilidade = $livro_array['disponibilidade'];
+
+			$livro = new Livro($nome_livro, $isbn, $autor, $disponibilidade);
+
+			$livro->setId($id_livro);
+
+			array_push($livros, $livro);
+		}
+		return $livros;
     }
 
 }
