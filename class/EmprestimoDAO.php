@@ -27,6 +27,8 @@ class EmprestimoDAO
 			$data_entrega = $emprestimo_array['data_entrega'];
 			$multa = $emprestimo_array['multa'];
 			$status = $emprestimo_array['status'];
+			$qt_renovacao = $emprestimo_array['qt_renovacao'];
+			$data_limite = $emprestimo_array['data_limite'];
 
 			//dados do usuario
 			$nome_usuario = $emprestimo_array['nome_usuario'];
@@ -60,7 +62,9 @@ class EmprestimoDAO
 										 $data_emprestimo,
 										 $data_entrega,
 										 $multa,
-										 $status);
+										 $status,
+										 $qt_renovacao,
+										 $data_limite);
 
 			$emprestimo->setId($id);
 
@@ -77,13 +81,17 @@ class EmprestimoDAO
         						data_emprestimo,
         						data_entrega,
         						multa,
-        						status) 
+        						status,
+        						qt_renovacao, 
+        						data_limite) 
         						values('{$emprestimo->getUsuario()->getId()}',
         							   '{$emprestimo->getLivro()->getId()}',
         							   '{$emprestimo->getDataEmprestimo()}',
-        							   '{$emprestimo->getDataEntrega()}',
+        							   NULL,
         							   '{$emprestimo->getMulta()}',
-        							   '{$emprestimo->getStatus()}');";
+        							   '{$emprestimo->getStatus()}',
+        							   0,
+        							   '{$emprestimo->getDataLimite()}');";
         $update = "UPDATE livros SET disponibilidade='indisponivel' WHERE id='{$emprestimo->getLivro()->getId()}'";
 
         $sql = $query.$update;
@@ -93,15 +101,15 @@ class EmprestimoDAO
 
 	public function buscaEmprestimo($id)
 	{
-		$query = "select * from emprestimo where id={$id}";
+		$query = "select * from emprestimos where id={$id}";
 		$resultado = mysqli_query($this->conexao, $query);
 		$emprestimo_buscado = mysqli_fetch_assoc($resultado);
 
 		$usuarioDao = new UsuarioDAO($this->conexao);
-		$usuario = $usuarioDao->buscaUsuario($usuario);
+		$usuario = $usuarioDao->buscaUsuario($emprestimo_buscado['id_usuario']);
 
 		$livroDao = new LivroDAO($this->conexao);
-		$livro = $livroDao->buscaLivro($livro);
+		$livro = $livroDao->buscaLivro($emprestimo_buscado['id_livro']);
 
 		$emprestimo = new Emprestimo(
 									$usuario, 
@@ -109,7 +117,9 @@ class EmprestimoDAO
 									$emprestimo_buscado['data_emprestimo'], 
 									$emprestimo_buscado['data_entrega'], 
 									$emprestimo_buscado['multa'], 
-									$emprestimo_buscado['status']
+									$emprestimo_buscado['status'],
+									$emprestimo_buscado['qt_renovacao'],
+									$emprestimo_buscado['data_limite']
 									);
 		$emprestimo->setId($id);
 
@@ -157,6 +167,8 @@ class EmprestimoDAO
 			$data_entrega = $emprestimo_array['data_entrega'];
 			$multa = $emprestimo_array['multa'];
 			$status = $emprestimo_array['status'];
+			$data_limite = $emprestimo_array['data_limite'];
+			$qt_renovacao = $emprestimo_array['qt_renovacao'];
 
 			//dados do usuario
 			$nome_usuario = $emprestimo_array['nome_usuario'];
@@ -190,7 +202,9 @@ class EmprestimoDAO
 										 $data_emprestimo,
 										 $data_entrega,
 										 $multa,
-										 $status);
+										 $status,
+										 $qt_renovacao,
+										 $data_limite);
 
 			$emprestimo->setId($id);
 
@@ -199,5 +213,32 @@ class EmprestimoDAO
 		return $emprestimos;
 	}
 
+	public function realizaDevolucao($id_livro, $id_emprestimo, $status, $multa)
+	{
+		date_default_timezone_set('America/Sao_Paulo');
+		$hoje = date("Y-m-d");
+		$query =
+				"UPDATE emprestimos SET status='{$status}',
+										 multa='{$multa}',
+										 data_entrega= '{$hoje}'
+				WHERE id = {$id_emprestimo};
+				
+				UPDATE livros set disponibilidade='disponivel' 
+				WHERE id='{$id_livro}';
+		";
+
+		return mysqli_multi_query($this->conexao, $query);
+	}
+
 }
+
+
+
+
+
+
+
+
+
+
 
