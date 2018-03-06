@@ -8,9 +8,11 @@ class Emprestimo
     private $data_emprestimo;
     private $data_entrega;
     private $multa;
-    private $status; 
+    private $status;
+    private $qt_renovacao;
+    private $data_limite;
 
-    function __construct(Usuario $usuario, Livro $livro, $data_emprestimo, $data_entrega, $multa, $status)
+    function __construct(Usuario $usuario, Livro $livro, $data_emprestimo, $data_entrega, $multa, $status, $qt_renovacao , $data_limite)
     {
         $this->usuario = $usuario;
         $this->livro = $livro;
@@ -18,6 +20,8 @@ class Emprestimo
         $this->data_entrega = $data_entrega;
         $this->multa = $multa;
         $this->status = $status;
+        $this->qt_renovacao = $qt_renovacao;
+        $this->data_limite = $data_limite;
     }
 
     public function getId()
@@ -90,5 +94,24 @@ class Emprestimo
     	$this->status = $status;
     }
 
+    public function getDataLimite()
+    {
+        return $this->data_limite;
+    }
+
+    public function setDataLimite($data_limite)
+    {
+        $this->data_limite = $data_limite;
+    }
+
+    public function getQtRenovacao()
+    {
+        return $this->qt_renovacao;
+    }
+
+    public function setQtRenovacao($qt_renovacao)
+    {
+        $this->qt_renovacao = $qt_renovacao;
+    }
 
 }
