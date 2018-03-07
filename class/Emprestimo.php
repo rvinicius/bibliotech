@@ -26,12 +26,12 @@ class Emprestimo
 
     public function getId()
     {
-    	return $this->id;
+        return $this->id;
     }
 
     public function setId($id)
     {
-    	$this->id = $id;
+        $this->id = $id;
     }
 
 	public function getUsuario()
@@ -51,7 +51,7 @@ class Emprestimo
 
     public function setLivro($livro)
     {
-    	$this->livro = $livro;
+        $this->livro = $livro;
     }
 
     public function getDataEmprestimo()
@@ -61,7 +61,7 @@ class Emprestimo
 
     public function setDataEmprestimo($data_emprestimo)
     {
-    	$this->data_emprestimo = $data_emprestimo;
+        $this->data_emprestimo = $data_emprestimo;
     }
 
     public function getDataEntrega()
@@ -71,7 +71,7 @@ class Emprestimo
 
     public function setDataEntrega($data_entrega)
     {
-    	$this->data_entrega = $data_entrega;
+        $this->data_entrega = $data_entrega;
     }
 
     public function getMulta()
@@ -81,7 +81,7 @@ class Emprestimo
 
     public function setMulta($multa)
     {
-    	$this->multa = $multa;
+        $this->multa = $multa;
     }
 
     public function getStatus()
@@ -91,7 +91,7 @@ class Emprestimo
 
     public function setStatus($status)
     {
-    	$this->status = $status;
+        $this->status = $status;
     }
 
     public function getDataLimite()

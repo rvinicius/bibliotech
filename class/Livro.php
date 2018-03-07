@@ -10,7 +10,7 @@
 
     public function __construct($nome, $isbn, $autor, $disponibilidade)
     {
-    	$this->nome = $nome;
+        $this->nome = $nome;
         $this->isbn = $isbn;
         $this->autor = $autor;
         $this->disponibilidade = $disponibilidade;
@@ -18,12 +18,12 @@
 
     public function getId()
     {
-    	return $this->id;
+        return $this->id;
     }
 
     public function setId($id)
     {
-    	$this->id = $id;
+        $this->id = $id;
     }
 
     public function getDisponibilidade()
@@ -38,22 +38,22 @@
 
     public function getNome()
     {
-    	return $this->nome;
+        return $this->nome;
     }
 
     public function setNome($nome)
     {
-    	$this->nome = $nome;
+        $this->nome = $nome;
     }
 
     public function getIsbn()
     {
-    	return $this->isbn;
+        return $this->isbn;
     }
 
     public function setIsbn($isbn)
     {
-    	$this->isbn = $isbn;
+        $this->isbn = $isbn;
     }
 
     public function getAutor()

@@ -11,7 +11,8 @@ class Usuario
     private $endereco;
     private $telefone;
 
-    public function __construct($nome, $dataNascimento, $cpf, $rg, $email, $endereco, $telefone)
+    public function __construct($nome, $dataNascimento, $cpf, $rg,
+                                $email, $endereco, $telefone)
     {
         $this->nome = $nome;
         $this->dataNascimento = $dataNascimento;
