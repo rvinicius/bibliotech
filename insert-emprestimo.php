@@ -14,10 +14,10 @@
     $status = 'aberto';
 
     $usuarioDao = new UsuarioDAO($conexao);
-	$usuario = $usuarioDao->buscaUsuario($id_usuario);
+    $usuario = $usuarioDao->buscaUsuario($id_usuario);
 
-	$livroDao = new LivroDAO($conexao);
-	$livro = $livroDao->buscaLivro($id_livro);
+    $livroDao = new LivroDAO($conexao);
+    $livro = $livroDao->buscaLivro($id_livro);
 
     $dataLimite = new Carbon(Carbon::now('America/Sao_Paulo')->addDays(7));
 

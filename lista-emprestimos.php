@@ -1,25 +1,25 @@
 <?php 
-	require_once("cabecalho.php"); 
-	require_once('vendor/autoload.php');
-	require_once("class/EmprestimoDAO.php");
-	use Carbon\Carbon;
-
-	$emprestimoDao = new EmprestimoDAO($conexao);
-	$emprestimos = $emprestimoDao->listaEmprestimos();
-
-	$emprestimosAberto = $emprestimoDao->buscaPorStatus("aberto");
-	$emprestimosFinalizados = $emprestimoDao->buscaPorStatus("finalizado");
-	$emprestimosMultaAberta = $emprestimoDao->buscaPorStatus("multa pendente");
-
-	$a = $_GET['a'];
-	// if($a == 'buscar'){
-	// 	$livros = $livroDao->buscaLivroPorIsbnOuNome($_POST['search']);
-	// } else {
-	// 	$livros = $livroDao->listaLivros();
-	// }
-
-	mostraAlerta("success");
-	mostraAlerta("danger");
+    require_once("cabecalho.php"); 
+    require_once('vendor/autoload.php');
+    require_once("class/EmprestimoDAO.php");
+    use Carbon\Carbon;
+    
+    $emprestimoDao = new EmprestimoDAO($conexao);
+    $emprestimos = $emprestimoDao->listaEmprestimos();
+    
+    $emprestimosAberto = $emprestimoDao->buscaPorStatus("aberto");
+    $emprestimosFinalizados = $emprestimoDao->buscaPorStatus("finalizado");
+    $emprestimosMultaAberta = $emprestimoDao->buscaPorStatus("multa pendente");
+    
+    $a = $_GET['a'];
+    // if($a == 'buscar'){
+    // 	$livros = $livroDao->buscaLivroPorIsbnOuNome($_POST['search']);
+    // } else {
+    // 	$livros = $livroDao->listaLivros();
+    // }
+    
+    mostraAlerta("success");
+    mostraAlerta("danger");
 ?>
 <style type="text/css">
 
@@ -102,7 +102,7 @@
 					        <td><?= Carbon::createFromFormat('Y-m-d', $emprestimoAberto->getDataEmprestimo())->format('d/m/Y') ?></td>
 					        <td><?= Carbon::createFromFormat('Y-m-d', $emprestimoAberto->getDataLimite())->format('d/m/Y') ?></td>
 					        <td class="text-center"><a href="devolucao-formulario.php?id=<?= $emprestimoAberto->getId(); ?>" class="btn btn-outline-primary btn-sm">Devolução</a></td>
-					        <td class="text-center"><a href="renovacao-formulario.php?id=<?= $emprestimoAberto->getId(); ?>" class="btn btn-outline-primary btn-sm">Renovação</a></td>
+					        <td class="text-center"><a href="renovacao-formulario.php?id=<?= $emprestimoAberto->getId(); ?>" class="btn btn-outline-secondary btn-sm">Renovação</a></td>
 					    </tr>
 						<?php endforeach ?>
 			  		</tbody>
@@ -144,7 +144,7 @@
 						<th scope="col">Usuario</th>
 						<th scope="col">Livro</th>
 						<th scope="col">Multa</th>
-						<th scope="col">Devolução</th>
+						<th scope="col"></th>
 					</tr>
 					</thead>
 					<tbody>
@@ -154,7 +154,7 @@
 							<td><?= $emprestimoMultaAberta->getUsuario()->getNome(); ?></td>
 							<td><?= $emprestimoMultaAberta->getLivro()->getNome(); ?></td>
 							<td><?= $emprestimoMultaAberta->getMulta()." R$"; ?></td>
-							<td class="text-center"><a href="devolucao.php?id=<?= $emprestimoMultaAberta->getId(); ?>" class="btn btn-outline-primary btn-sm">Devolução</a></td>
+							<td class="text-center"><a href="recebe-multa.php?id=<?= $emprestimoMultaAberta->getId(); ?>" onclick="return confirm('Deseja registrar o pagamento da multa no valor de <?= $emprestimoMultaAberta->getMulta(); ?>R$ do usuário(a) <?=$emprestimoMultaAberta->getUsuario()->getNome()?> ?');" class="btn btn-outline-success btn-sm">Registrar pagamento</a></td>
 						</tr>
 						<?php endforeach ?>
 					</tbody>

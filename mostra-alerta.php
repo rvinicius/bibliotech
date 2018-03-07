@@ -1,7 +1,8 @@
 <?php
 session_start();
- function mostraAlerta($tipo) {
-     if(isset($_SESSION[$tipo])) {
+function mostraAlerta($tipo)
+{
+    if(isset($_SESSION[$tipo])){
 ?>
 
 	<div class="alert alert-<?= $tipo ?> alert-dismissible fade show" role="alert">
@@ -13,5 +14,5 @@ session_start();
 
 <?php
         unset($_SESSION[$tipo]);
-     }
- }
+	}
+}
