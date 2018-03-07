@@ -1,6 +1,7 @@
 <?php 
 require_once("conecta.php");
-require_once("mostra-alerta.php"); 
+require_once("mostra-alerta.php");
+require_once("logica-usuario.php");
 
     error_reporting(E_ALL ^ E_NOTICE);
     
@@ -8,12 +9,14 @@ require_once("mostra-alerta.php");
         require_once("class/".$nomeDaClasse.".php");
     });
 
+    verificaUsuario();
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
 	<link rel="stylesheet" type="text/css" href="vendor/twbs/bootstrap/dist/css/bootstrap.min.css">
+  <script type="text/javascript" src="js/mascaras.js"></script>
 	<title>Acervo</title>
     <meta charset="utf-8" />
 </head>
@@ -59,7 +62,6 @@ require_once("mostra-alerta.php");
           <a class="dropdown-item" href="cadastro-emprestimo.php">Novo</a>
         </div>
       </li>
-
     </ul>
 
 
@@ -71,6 +73,13 @@ require_once("mostra-alerta.php");
     </form>
 
 
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <?php if(isset($_SESSION['usuario_logado'])){ ?>
+        <a class="nav-link" href="logout.php"><u>Deslogar</u></a>
+        <?php } ?>
+      </li>
+    </ul>
 
   </div>
 </nav>
@@ -78,20 +87,13 @@ require_once("mostra-alerta.php");
 	<script type="text/javascript" src="vendor/twbs/bootstrap/dist/js/bootstrap.min.js"></script>
 
 <script type="text/javascript">
- $(document).ready(function () {    
-    //Get CurrentUrl variable by combining origin with pathname, this ensures that any url appendings (e.g. ?RecordId=100) are removed from the URL
-    var CurrentUrl = window.location.origin+window.location.pathname;
-    //Check which menu item is 'active' and adjust apply 'active' class so the item gets highlighted in the menu
-    //Loop over each <a> element of the NavMenu container
-    $('nav a').each(function(Key,Value)
-        {
-            //Check if the current url
-            if(Value['href'] === CurrentUrl)
-            {
-                //We have a match, add the 'active' class to the parent item (li element).
-                $(Value).parent().parent().addClass('active');
-            }
-        });
-    console.log();
- });
- </script>
+$(document).ready(function () {    
+  var CurrentUrl = window.location.origin+window.location.pathname;
+  $('nav a').each(function(Key,Value)
+    {
+      if(Value['href'] === CurrentUrl){
+        $(Value).parent().parent().addClass('active');
+      }
+    });
+  });
+</script>
