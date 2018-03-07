@@ -1,30 +1,30 @@
 <?php 
-	require_once("cabecalho.php"); 
-	require_once('vendor/autoload.php');
-	require_once("class/EmprestimoDAO.php");
-	use Carbon\Carbon;
-
-	$id_emprestimo = $_GET['id'];
-
-	$emprestimoDao = new EmprestimoDAO($conexao);
-	$emprestimo = $emprestimoDao->buscaEmprestimo($id_emprestimo);
-
-	$livro = $emprestimo->getLivro();
-	$usuario = $emprestimo->getUsuario();
-
-
-	$hoje = Carbon::now(new DateTimeZone('America/Sao_Paulo'));
-	$dataLimite = Carbon::createFromFormat('Y-m-d', $emprestimo->getDataLimite());
-
-	$dataEmprestimo = Carbon::createFromFormat('Y-m-d', $emprestimo->getDataEmprestimo());
-
-	$multa = $hoje->gt($dataLimite) ? $hoje->diffInDays($dataLimite) : '0';
+    require_once("cabecalho.php"); 
+    require_once('vendor/autoload.php');
+    require_once("class/EmprestimoDAO.php");
+    use Carbon\Carbon;
+    
+    $id_emprestimo = $_GET['id'];
+    
+    $emprestimoDao = new EmprestimoDAO($conexao);
+    $emprestimo = $emprestimoDao->buscaEmprestimo($id_emprestimo);
+    
+    $livro = $emprestimo->getLivro();
+    $usuario = $emprestimo->getUsuario();
+    
+    
+    $hoje = Carbon::now(new DateTimeZone('America/Sao_Paulo'));
+    $dataLimite = Carbon::createFromFormat('Y-m-d', $emprestimo->getDataLimite());
+    
+    $dataEmprestimo = Carbon::createFromFormat('Y-m-d', $emprestimo->getDataEmprestimo());
+    
+    $multa = $hoje->gt($dataLimite) ? $hoje->diffInDays($dataLimite) : '0';
 
 	//atualizar o status do livro & status do emprestimo
 ?>
 
 <div class="container card  mt-4">
-	<h2 class="card-title">Cadastro de livro</h2>
+	<h2 class="card-title">Devolução</h2>
 	<form action="update-emprestimo.php" method="POST">
 		<div class='row'>
 			<div class="col-md-6">
