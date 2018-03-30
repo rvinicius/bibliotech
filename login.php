@@ -1,16 +1,19 @@
 <?php 
-require_once("banco-usuario.php");
 require_once("logica-usuario.php");
+require_once("autoload.php");
+require_once("conecta.php");
 
-$usuario = buscaUsuario($conexao, $_POST["login"], $_POST["senha"]);
+$login = $_POST["login"];
+$senha = $_POST["senha"];
 
-if ($usuario == null) {
+$admDao = new AdministradorDAO($conexao);
+$adm = $admDao->buscaAdministradorParaLogar($login, $senha);
+
+if(isset($adm)){
+	$_SESSION["success"] = "Logado com sucesso.";
+	$adm->realizaLogin();
+	header("Location: lista-emprestimos.php");
+} else {
     $_SESSION["danger"] = "Falha ao logar.";
     header("Location: index.php");
-}else{
-    $_SESSION["success"] = "Logado com sucesso.";
-    logaUsuario($usuario['login']);
-    header("Location: lista-emprestimos.php");
 }
-
-var_dump($usuario);
