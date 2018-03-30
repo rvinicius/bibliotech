@@ -1,15 +1,12 @@
 <?php 
 require_once("conecta.php");
+require_once("autoload.php");
 require_once("mostra-alerta.php");
 require_once("logica-usuario.php");
 
     error_reporting(E_ALL ^ E_NOTICE);
-    
-    spl_autoload_register(function($nomeDaClasse){
-        require_once("class/".$nomeDaClasse.".php");
-    });
-
-    verificaUsuario();
+  
+    Administrador::verificaUsuario();
 ?>
 
 <!DOCTYPE html>
