@@ -1,5 +1,5 @@
 <?php 
-
+// refatorar
 if(!isset($_SESSION)){
     session_start();
 }
@@ -20,11 +20,11 @@ function usuarioLogado(){
     return $_SESSION['usuario_logado'];
 }
 
-function logaUsuario($login){
-    $_SESSION["usuario_logado"] = $login;
-}
+// function logaUsuario($login){
+//     $_SESSION["usuario_logado"] = $login;
+// }
 
 function logout(){
     session_destroy();
-    session_start();	
+    session_start();
 }
