@@ -1,4 +1,6 @@
 <?php 
+require_once("vendor/autoload.php");
+use Carbon\Carbon;
 
 class Emprestimo
 {
@@ -112,6 +114,13 @@ class Emprestimo
     public function setQtRenovacao($qt_renovacao)
     {
         $this->qt_renovacao = $qt_renovacao;
+    }
+
+    public function calculaMulta($dataAtual, $dataLimite)
+    {
+        //multa com valor de 1 real é calculada de acordo com a diferença de dias
+        $valMulta = $dataAtual->gt($dataLimite) ? $dataAtual->diffInDays($dataLimite) : '0';
+        return $valMulta;
     }
 
 }
