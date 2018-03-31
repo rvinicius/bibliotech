@@ -24,12 +24,14 @@ class Administrador
         return isset($_SESSION['usuario_logado']);
     }
 
-    public static function verificaUsuario()
+    public static function verificaSeAdmEstaLogado()
     {
         if (!(self::estaLogado()) && basename($_SERVER['PHP_SELF']) != 'index.php') {
             $_SESSION["danger"]= "Você não tem acesso a essa informação.";
             header("Location: index.php");
             die();
+        } else {
+            return self::estaLogado();
         }
     }
 
