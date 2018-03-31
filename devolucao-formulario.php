@@ -1,26 +1,21 @@
 <?php 
     require_once("cabecalho.php"); 
-    require_once('vendor/autoload.php');
-    require_once("class/EmprestimoDAO.php");
+    require_once("vendor/autoload.php");
+    require_once("autoload.php");
     use Carbon\Carbon;
     
     $id_emprestimo = $_GET['id'];
     
     $emprestimoDao = new EmprestimoDAO($conexao);
     $emprestimo = $emprestimoDao->buscaEmprestimo($id_emprestimo);
-    
     $livro = $emprestimo->getLivro();
     $usuario = $emprestimo->getUsuario();
     
-    
     $hoje = Carbon::now(new DateTimeZone('America/Sao_Paulo'));
     $dataLimite = Carbon::createFromFormat('Y-m-d', $emprestimo->getDataLimite());
-    
     $dataEmprestimo = Carbon::createFromFormat('Y-m-d', $emprestimo->getDataEmprestimo());
     
-    $multa = $hoje->gt($dataLimite) ? $hoje->diffInDays($dataLimite) : '0';
-
-	//atualizar o status do livro & status do emprestimo
+    $multa = $emprestimo->calculaMulta($hoje, $dataLimite);
 ?>
 
 <div class="container card  mt-4">
