@@ -6,7 +6,7 @@ require_once("logica-usuario.php");
 
     error_reporting(E_ALL ^ E_NOTICE);
   
-    Administrador::verificaUsuario();
+    Administrador::verificaSeAdmEstaLogado();
 ?>
 
 <!DOCTYPE html>

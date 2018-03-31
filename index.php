@@ -5,9 +5,9 @@
       mostraAlerta("danger");
  ?>
 
-
-	  <?php if (usuarioEstaLogado()){ ?>
-		<p class="text-success">Você está logado como <?= usuarioLogado(); ?></p>
+<!-- refatorar -->
+	  <?php if (Administrador::verificaSeAdmEstaLogado()){ ?>
+		<p class="text-success">Você está logado como <?= $_SESSION["usuario_logado"] ?></p>
         <a href="logout.php">Deslogar</a></p>
 <?php } else { ?>
 <div class="container card col-md-3 mt-3 ">

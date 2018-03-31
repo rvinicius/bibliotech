@@ -1,4 +1,6 @@
-<?php require_once("class/Usuario.php");
+<?php
+require_once("class/Usuario.php");
+
 
 class UsuarioDAO
 {
@@ -92,4 +94,4 @@ class UsuarioDAO
 
     }
 
-} 
+}
