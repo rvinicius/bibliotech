@@ -1,9 +1,6 @@
 <?php
     require_once('cabecalho.php');
-    require_once('class/EmprestimoDAO.php');
-    require_once('class/UsuarioDAO.php');
     require_once('vendor/autoload.php');
-
     use Carbon\Carbon;
     Carbon::setLocale('br');
 
