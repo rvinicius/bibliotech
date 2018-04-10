@@ -14,5 +14,4 @@
         $_SESSION["danger"] = "A multa no valor de ".$emprestimo->getMulta()."R$ do usuário(a)".$emprestimo->getUsuario()->getNome()." não foi registrada. Erro: ".$msg;
         header("Location: lista-emprestimos.php");
         die();
-    } 
- ?>
+    }
