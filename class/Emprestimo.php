@@ -123,4 +123,23 @@ class Emprestimo
         return $valMulta;
     }
 
+    public function reajustaDadosParaRenovacao()
+    {
+        $dataAtual = Carbon::now(new DateTimeZone('America/Sao_Paulo'));
+        $dataLimite = Carbon::createFromFormat('Y-m-d', $this->getDataLimite());
+
+        //verifica se há multas no emprestimo
+        if($this->calculaMulta($dataAtual, $dataLimite) == 0){
+            $qt_renovacao = $this->getQtRenovacao();
+            $qt_renovacao += 1;
+            $this->setQtRenovacao($qt_renovacao);
+
+            $dataLimiteEntrega = new Carbon(Carbon::now('America/Sao_Paulo')->addDays(7));
+            $this->setDataLimite($dataLimiteEntrega->format('Y-m-d'));
+            return $this;
+        } else {
+            return false;
+        }
+    }
+
 }

@@ -143,19 +143,20 @@ class EmprestimoDAO
 
     public function realizaRenovacao(Emprestimo $emprestimo)
     {
-        $query = "UPDATE emprestimos 
-                        SET
-                        id_usuario ='{$emprestimo->getUsuario()->getId()}',
-                        id_livro ='{$emprestimo->getLivro()->getId()}',
-                        data_emprestimo ='{$emprestimo->getDataEmprestimo()}',
-                        data_entrega = NULL,
-                        multa ='{$emprestimo->getMulta()}',
-                        status='{$emprestimo->getStatus()}',
-                        qt_renovacao ='{$emprestimo->getQtRenovacao()}',
-                        data_limite='{$emprestimo->getDataLimite()}'
-                        WHERE id='{$emprestimo->getId()}'";
-        return mysqli_query($this->conexao, $query);
-
+        if($emprestimo->reajustaDadosParaRenovacao()){
+            $query = "UPDATE emprestimos 
+                            SET
+                            id_usuario ='{$emprestimo->getUsuario()->getId()}',
+                            id_livro ='{$emprestimo->getLivro()->getId()}',
+                            data_emprestimo ='{$emprestimo->getDataEmprestimo()}',
+                            data_entrega = NULL,
+                            multa ='{$emprestimo->getMulta()}',
+                            status='{$emprestimo->getStatus()}',
+                            qt_renovacao ='{$emprestimo->getQtRenovacao()}',
+                            data_limite='{$emprestimo->getDataLimite()}'
+                            WHERE id='{$emprestimo->getId()}'";
+            return mysqli_query($this->conexao, $query);
+        }
     }
     
     public function deletaEmprestimo($id)
