@@ -1,6 +1,5 @@
 <?php 
     require_once("cabecalho.php");
-    require_once("class/UsuarioDAO.php");
 
     $nome = $_POST['nome'];
     $dataNascimento = $_POST['dataNascimento'];
@@ -9,7 +8,7 @@
     $email = $_POST['email'];
     $endereco = $_POST['endereco'];
     $telefone = $_POST['telefone'];
-
+    // refatorar
 
     $date = DateTime::createFromFormat('d/m/Y', $dataNascimento);
     $dataFormatada = $date->format('Y-m-d');

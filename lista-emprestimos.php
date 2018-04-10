@@ -1,7 +1,6 @@
 <?php 
     require_once("cabecalho.php"); 
     require_once('vendor/autoload.php');
-    require_once("class/EmprestimoDAO.php");
     use Carbon\Carbon;
     
     $emprestimoDao = new EmprestimoDAO($conexao);

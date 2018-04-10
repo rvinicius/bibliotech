@@ -1,7 +1,5 @@
 <?php require_once("cabecalho.php"); 
 
-require_once("class/UsuarioDAO.php");
-
 $usuarioDao = new UsuarioDAO($conexao);
 $usuarios = $usuarioDao->listaUsuarios();
 

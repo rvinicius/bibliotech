@@ -1,11 +1,10 @@
 <?php 
   require_once("cabecalho.php");
-  require_once("class/LivroDAO.php");
 
   $multa = $_POST['multa'];
   $id_emprestimo = $_POST['id_emprestimo'];
   $id_livro = $_POST['id_livro'];
-
+// refatorar
   if($multa > 0){
     $status = "multa pendente";
   } else {

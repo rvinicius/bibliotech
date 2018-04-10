@@ -1,6 +1,5 @@
 <?php 
     require_once("cabecalho.php");
-    require_once("class/UsuarioDAO.php");
 
     $nome = $_POST['nome'];
     $dataNascimento = $_POST['dataNascimento'];

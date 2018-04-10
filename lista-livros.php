@@ -1,7 +1,5 @@
 <?php require_once("cabecalho.php"); 
 
-require_once("class/LivroDAO.php");
-
 $livroDao = new LivroDAO($conexao);
 
 $a = $_GET['a'];

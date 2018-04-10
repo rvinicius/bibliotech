@@ -1,7 +1,6 @@
 <?php 
     require_once("cabecalho.php"); 
     require_once("vendor/autoload.php");
-    require_once("autoload.php");
     use Carbon\Carbon;
     
     $id_emprestimo = $_GET['id'];
